@@ -1,5 +1,3 @@
-[toc]
-
 <img src="./paywave.png" style="zoom:67%;" />
 
 
