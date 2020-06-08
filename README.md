@@ -4,17 +4,18 @@
 
 #  1. Introduction
 
-Pay with Wave Redirect API is an online payment solution by Digital Money Myanmar Limited (Wave Money) that allows online merchants to accept payments securely and instantly.
+WavePay Payment Gateway is an online payment solution by Digital Money Myanmar Limited (Wave Money) that allows online merchants to accept payments securely and instantly. 
 
 This document covers the essential information, processes, and other relevant aspects for merchant technical integration with the Pay with Wave Platform. This document contains confidential information and is not intended to be viewed by unapproved external parties. All information and processes in the document are subject to edits and changes from Wave Money.
 
 
 
-# 2. Technical Integration Aspect
+
+# 2. Technical Integration 
 
 ## 2.1 How it works
 
-WavePay Payment Gateway allows merchant to integrate to WavePay Payment Gateway with minimum effort and enjoy the full benefits of enhanced security and full suite of payment options. Accepting payment is easier with WavePay Payment Gateway.
+WavePay Payment Gateway allows Merchants to accept payments through the user’s WavePay account with minimum effort and enjoy the full benefits of enhanced security and full suite of payment options. Accepting payment is easier with WavePay Payment Gateway.
 
 
 
@@ -24,20 +25,20 @@ WavePay Payment Gateway allows merchant to integrate to WavePay Payment Gateway 
 
 ## 2.2 Security
 
-Merchants who wish to have access to the API are required to provide the client_id and client_secret, which they Requests to access the API is only accepted on presentation of the correct credentials. All requests from merchants systems to WavePay Payment Gateway API take place over HTTPS. Certificate for HTTPS endpoints for callback URL need to be from recognized Certificate Authorities (CAs), i.e., not self-signed and must implemented with standard port 443. 
+Merchants who wish to have access to the API will be provided with a Client ID and Client Secret. All Requests should carry the credentials in the API (headers). All requests from merchants' systems to WavePay Payment Gateway API take place over HTTPS. Certificate for HTTPS endpoints for callback URL need to be from recognized Certificate Authorities (CAs), i.e., not self-signed and must be implemented with standard port 443.
 
 
 
 ## 2.3 Environment
 
-Merchants can use the testing environment to do their functional integrations. Once the integration testing in test environment is finished, the switch to our production system can be made. This mean that all endpoints for both environments and the credentials have to be obtained for both. 
+Merchants can use the testing environment to do their functional integrations. Once the integration testing in test environment is finished, the switch to our production system can be made. This mean that all endpoints for both environments and the credentials must be obtained from Wave Money.
 
 | **Environment** | **URL**                                      |
 | --------------- | -------------------------------------------- |
-| Testing         | https://devpayment.wavemoney.io/payment:8107 |
+| Testing         | https://devpayment.wavemoney.io:8107/payment |
 | Production      | https://payment.wavemoney.io/payment         |
 
-We will be provided the Client ID and Client Secret to access both environments. 
+We will be providing the Client ID and Client Secret to access both environments after successful onboarding.
 
 
 
@@ -49,11 +50,11 @@ We will be provided the Client ID and Client Secret to access both environments.
 | --------------------- | ------------------------------------------------ | -------- | ------------- |
 | merchant_id           | Merchant ID provided by Wave Money               | string   | Mandatory     |
 | order_id              | Order ID provided by Merchant                    | string   | Mandatory     |
-| merchant_reference_id | Unique ID for every transaction                  | string   | Mandatory     |
+| merchant_reference_id | Unique ID for every transaction by Merchant      | string   | Mandatory     |
 | frontend_result_url   | Merchant's Website URL                           | string   | Mandatory     |
 | backend_result_url    | Merchant's Web Service callback URL              | string   | Mandatory     |
 | amount                | Total Amount                                     | string   | Mandatory     |
-| timeToLiveSeconds     | Time to Live for transaction ( seconds )         | string   | Man           |
+| timeToLiveSeconds     | Time to Live for transaction (in seconds )         | string   | Man           |
 | payment_description   | Payment Description to display on Payment Screen | string   | Mandatory     |
 | merchant_name         | Merchant Name to display on Payment Screen       | string   | Mandatory     |
 | items                 | Items to display on Payment Screen               | string   | Mandatory     |
@@ -63,13 +64,13 @@ We will be provided the Client ID and Client Secret to access both environments.
 
 # 3. How to integrate
 
-WavePay Payment Gateway allows merchant to integrate to WavePay Payment Gateway with minimum effort and enjoy the full benefits of enhanced security and full suite of payment options. Accepting payment is easier with WavePay Payment Gateway.
+This part of the document explains the different steps involved in integrating WavePay Payment Gateway. 
 
 
 
-## 3.1 Prepare Pay with Wave button
+## 3.1 Setup Merchant Credentials
 
-First, setup Merchant Credentials and Payload that require for Request
+First, setup Merchant Credentials and Payload that are required for Request Creation
 
 ```php
 $data = [
@@ -77,53 +78,54 @@ $data = [
     'timeToLiveSeconds' => 5000,
 
     // string - Merchant Name for Payment Screen
-    'merchant_name' => "Wave Merchant",
+    'merchant_name' => <<Merchant Name>>,
 
     // string - Merchant id provided by Wave Money
-    'merchant_id' => "test",
+    'merchant_id' => <<MerchantID>>,
 
     // unsigned integer - Order id provided Merchant
-    'order_id' => rand(1000000, 9999999),
+    'order_id' => <<order_id>>,
 
     // unsigned integer - Total Amount of transaction
-    'amount' => 50,
+    'amount' => <<amount>>,
 
     // string - mendatory backend url for Payment Service
-    'backend_result_url' => "https://wave-merchant.com/backend-callback",
+    'backend_result_url' => <<"https://wave-merchant.com/backend-callback">>,
 
-    // string - mendatory frontend url for Payment Service
-    'frontend_result_url' => "https://wave-merchant.com",
+    // string - mandatory frontend url for Payment Service
+    'frontend_result_url' => "<<https://wave-merchant.com>>",
 
-    // string - Unique Merchant Reference ID for Transaction
-    'merchant_reference_id' => "wavemerchant-" . rand(1000000, 9999999),
+    // string - Unique Merchant Reference ID for Transaction, reference_id is unsigned integer
+    'merchant_reference_id' => <<"wavemerchant-"<<reference_id>> >>,
 
     // string - Payment Description for Payment Screen from Merchant
-    'payment_description' => "Buying things from Wave Merchant"
+    'payment_description' => "<<Merchant Payment Description e.g. Purchase of Item X>>"
 ];
 ```
 
+## 3.2 Setup Payment Screen Display details
 
-
-then prepare Items to display in our Payment Screen.
+Next prepare the items to display in WavePay Payment Screen.
 
 ```php
 $items = json_encode([
 		['name' => "Test Product 1", 'amount' => 1000],
-  	['name' => "Test Product 2", 'amount' => 500]
+  	    ['name' => "Test Product 2", 'amount' => 500]
 ]);
 ```
 
 
-
+## 3.3 Add the Secret key 
 Secret Key provided by Wave Money
 
 ```php
-$secret_key = "f6298a18c678e5e683f407169c59e721ff6bd33b1995d74e78039f4fca0b8044";
+$secret_key = "provided by WaveMoney";
 ```
 
 
 
-Generate hash that require for Payload.
+## 3.3 Setup the hash for Payload Verification
+Generate hash that is required for Payload verification.
 
 ```php
 $hash = hash_hmac('sha256', implode("", [
@@ -137,8 +139,8 @@ $hash = hash_hmac('sha256', implode("", [
 ```
 
 
-
-Use  those Payload and required Parameters in an HTML Form to request for Payment to Wave.
+## 3.4 Setup WavePay Payment request form
+Use  these Payload items and required Parameters in an HTML Form to initiate the Payment with WavePay Payment Gateway.
 
 ```php+HTML
 <!DOCTYPE html>
@@ -170,9 +172,9 @@ Use  those Payload and required Parameters in an HTML Form to request for Paymen
 
 
 
-### Call Back
+##  3.5 Call Back
 
-Wave System will call the “call-back URL” that will be provided in the request form.
+WavePay Payment Gateway will call the “call-back URL” that is provided in the request form.
 
 | HTTP Method | POST             |
 | ----------- | ---------------- |
@@ -180,20 +182,20 @@ Wave System will call the “call-back URL” that will be provided in the reque
 
 
 
-### Request JSON Example
+### Request JSON format
 
 ```json
 {
-  "status": "PAYMENT_CONFIRMED",
-  "merchantId": "food2u",
-  "orderId": "7",
-  "merchantReferenceId": "7",
-  "frontendResultUrl": "http://test-dev:8080/frontendurl",
-  "backendResultUrl": "http://test-dev:8080/callbackurl",
-  "initiatorMsisdn": "9791009080",
-  "amount": 1,
+  "status": "status codes as per table below",
+  "merchantId": "<<MerchantID>>",
+  "orderId": "<<order_id>>",
+  "merchantReferenceId": "<<reference_id>>",
+  "frontendResultUrl": "<<https://wave-merchant.com>>",
+  "backendResultUrl": "<<https://wave-merchant.com/backend-callback>>",
+  "initiatorMsisdn": "Myanmar Phone number - 10 digit",
+  "amount": "<<amount>>",
   "timeToLiveSeconds": 300,
-  "paymentDescription": "shirts for Men",
+  "paymentDescription": "<<Merchant Payment Description e.g. Purchase of Item X>>",
   "currency": "MMK",
   "hashValue": "29e9486e727ac0e4f185c3b757cf8892e59eb8d292c23f11d13926bb0bdae798",
   "additionalField1": null,
@@ -207,14 +209,14 @@ Wave System will call the “call-back URL” that will be provided in the reque
 }
 ```
 
- 
+ ### Request JSON request details 
 
 | Property Name       | Property          | Description                                                  |
 | ------------------- | ----------------- | ------------------------------------------------------------ |
-| Status              | mandatory         | Please see the status description below                      |
-| merchantId          | mandatory         | merchant_id that will be defined and agreed on both sides. example - food2u, sgshop |
-| orderId             | optional          | kinda `invoice_id` from merchant side. there will be only one `order_id` for one order whilst there can be many `merchantReferenceId` |
-| merchantReferenceId | mandatory, unique | It should be a unique string every call.                     |
+| Status              | mandatory         | Please see the status codes in table below                   |
+| merchantId          | mandatory         | merchant_id that will be defined and agreed on both sides    |
+| orderId             | optional          | `order id` or `invoice_id` unique to the transaction generated by merchant side. there will be only one `order_id` for one order whilst there can be many `merchantReferenceId` |
+| merchantReferenceId | mandatory, unique | It should be a unique string every payment request call.     |
 | frontendResultUrl   | mandatory         | redirect url reponse to web                                  |
 | backendResultUrl    | mandatory         | call back url to merchant server                             |
 | initiatorMsisdn     | mandatory         | purchaser msisdn                                             |
@@ -228,50 +230,29 @@ Wave System will call the “call-back URL” that will be provided in the reque
 | hashValue           |                   | hash_hmac(merchantId+orderId+amount+backendResultUrl+merchantReferenceId+initiatorMsisdn+transactionId+paymentRequestId+requestTime) -- with hash secret key |
 
 
+### Request JSON request Status Codes 
 
-```
-status   
-
-{ 
-
-  OTP_REQUESTED 
-
-  OTP_CONFIRMED 
-
-  PAYMENT_INITIATED 
-
-  PAYMENT_CONFIRMED 
-
-  PAYMENT_REQUEST_CANCELLED 
-
-  INVALID_HASH 
-
-  OTP_GENERATION_FAILED 
-
-  OTP_CONFIRMATION_FAILED 
-
-  INSUFFICIENT_BALANCE 
-
-  INVALID_PIN 
-
-  ACCOUNT_LOCKED 
-
-  BILL_COLLECTION_FAILED -- errors apart from INSUFFICIENT_BALANCE,INVALID_PIN,ACCOUNT_LOCKED 
-
-  PAYMENT_CALLBACK_FAILED 
-
-  PAYMENT_CALLBACK_SUCCESS 
-
-  PAYMENT_CONFIRMED 
-
-  TRANSACTION_TIMED_OUT -- transaction has timed out when committing the payment 
-
-  PAYMENT_RETRIEVAL_FAILED -- issue in retrieving payment details 
-
-  MERCHANT_RETRIEVAL_FAILED -- issue in retrieving merchant details 
-
-} 
-```
+|Status 			| Description   	|
+|---				|---			|
+|OTP_REQUESTED  		|    			|
+|OTP_CONFIRMED			|   			|
+|PAYMENT_INITIATED   		|   			|
+|PAYMENT_CONFIRMED   		|   			|
+|PAYMENT_REQUEST_CANCELLED   	|   			|
+|INVALID_HASH   		|   			|
+|OTP_GENERATION_FAILED   	|   			|
+|OTP_CONFIRMATION_FAILED   	|   			|
+|INSUFFICIENT_BALANCE   	|   			|
+|INVALID_PIN    		|   			|
+|ACCOUNT_LOCKED    		|   			|
+|BILL_COLLECTION_FAILED		| Errors apart from INSUFFICIENT_BALANCE, INVALID_PIN,ACCOUNT_LOCKED 			|
+|PAYMENT_CALLBACK_FAILED	|   			|
+|PAYMENT_CALLBACK_SUCCESS	|   			|
+|PAYMENT_CONFIRMED		|   			|
+|TRANSACTION_TIMED_OUT		| Transaction has timed out when committing the payment			|
+|PAYMENT_CONFIRMED		|   			|
+|PAYMENT_RETRIEVAL_FAILED	| Issue in retrieving payment details    			|
+|MERCHANT_RETRIEVAL_FAILED	| Issue in retrieving merchant details  - Merchant not registered or activated			|
 
 
 
@@ -283,17 +264,17 @@ status
 
     - No, customer only required to enter Mobile Number prefix with ‘9’, mobile number prefix ‘0’ and country code ‘(+95)’ are not required. 
 
-    - For e.g. 979100999,978560801 
+    - For e.g. 979100XXX
 
  
 
 ## As a Developer  
 
-1. Does Wave Money take responsibility for the communication between client & server? 
-    - No, communication between the client (web/app) and the server (merchant server) is the developer responsibility. 
+1. Is it Wave Money's responsibility for the communication between merchant client app & Merchant server app ? 
+    - No. Communication between the client (merchant app) and the server (merchant server app) is the developer responsibility. 
 
  
 
-2. Can I share Client_ID and Client_secret to publicly? 
-    - No, you should not your Client_ID and Client_Secret to publicly, you must be kept secret and never appear anywhere publicly, otherwise anyone could make transactions on your behalf. 
+2. Can I share Client_ID and Client_secret to public ? 
+    - No, you should not share your Client_ID and Client_Secret to public, you must be kept secret and these details should never appear anywhere publicly, otherwise anyone could make transactions on your behalf. Wavemoney will not be held responsible for transactions not originating from your server. 
 
