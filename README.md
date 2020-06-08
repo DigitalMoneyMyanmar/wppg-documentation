@@ -57,7 +57,7 @@ We will be providing the Client ID and Client Secret to access both environments
 | timeToLiveSeconds     | Time to Live for transaction (in seconds )       | string   | Mandatory     |
 | payment_description   | Payment Description to display on Payment Screen | string   | Mandatory     |
 | merchant_name         | Merchant Name to display on Payment Screen       | string   | Mandatory     |
-| items                 | Items to display on Payment Screen               | string   | Mandatory     |
+| items                 | Items to display on Payment Screen               | JSON string array| Mandatory     |
 | Hash                  | Needed for Hash Validating                       | string   | Mandatory     |
 
  
