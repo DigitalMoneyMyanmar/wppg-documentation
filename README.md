@@ -234,24 +234,23 @@ WavePay Payment Gateway will call the Call-back URL which is the "backend_result
 
 |Status 			| Description   	|
 |---				|---			|
-|OTP_REQUESTED  		| OTP has been requested     			|
-|OTP_CONFIRMED			| OTP has been verified  			|
-|PAYMENT_INITIATED   		| Payment has been initiated   			|
-|PAYMENT_CONFIRMED   		| Payment is confirmed   			|
-|PAYMENT_REQUEST_CANCELLED   	| Payment has been cancelled by User/system   			|
-|INVALID_HASH   		| hashValue is invalid   			|
-|OTP_GENERATION_FAILED   	| OTP Generation has failed    			|
-|OTP_CONFIRMATION_FAILED   	| OTP confirmation failed - Invalid or mismatch  			|
+|OTP_REQUESTED  		| OTP has been requested     								|
+|OTP_CONFIRMED			| OTP has been verified  								|
+|PAYMENT_INITIATED   		| Payment has been initiated   								|
+|PAYMENT_CONFIRMED		| Payment completed successully  							|
+|PAYMENT_REQUEST_CANCELLED   	| Payment has been cancelled by User/system   						|
+|INVALID_HASH   		| hashValue is invalid   								|
+|OTP_GENERATION_FAILED   	| OTP Generation has failed    								|
+|OTP_CONFIRMATION_FAILED   	| OTP confirmation failed - Invalid or mismatch  					|
 |INSUFFICIENT_BALANCE   	| Wave Account balance is insufficient or is below Invoice amount  			|
-|INVALID_PIN    		| Wave Account PIN is not valid  			|
-|ACCOUNT_LOCKED    		| Wave Account is locked  			|
+|INVALID_PIN    		| Wave Account PIN is not valid  							|
+|ACCOUNT_LOCKED    		| Wave Account is locked  								|
 |BILL_COLLECTION_FAILED		| Errors apart from INSUFFICIENT_BALANCE, INVALID_PIN, ACCOUNT_LOCKED 			|
-|PAYMENT_CALLBACK_FAILED	| Payment callback to  backendResultUrl failed 			|
-|PAYMENT_CALLBACK_SUCCESS	| Payment callback to  backendResultUrl successfull  			|
-|PAYMENT_CONFIRMED		| Payment completed successully  			|
-|TRANSACTION_TIMED_OUT		| Transaction has timed out when committing the payment			|
-|PAYMENT_RETRIEVAL_FAILED	| Issue in retrieving payment details    			|
-|MERCHANT_RETRIEVAL_FAILED	| Issue in retrieving merchant details  - Merchant not registered or activated			|
+|PAYMENT_CALLBACK_FAILED	| Payment callback to  backendResultUrl failed 						|
+|PAYMENT_CALLBACK_SUCCESS	| Payment callback to  backendResultUrl successfull  					|
+|TRANSACTION_TIMED_OUT		| Transaction has timed out when committing the payment					|
+|PAYMENT_RETRIEVAL_FAILED	| Issue in retrieving payment details    						|
+|MERCHANT_RETRIEVAL_FAILED	| Issue in retrieving merchant details  - Merchant not registered or activated		|
 
 
 
