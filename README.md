@@ -124,7 +124,7 @@ $secret_key = "provided by WaveMoney";
 
 
 
-## 3.3 Setup the hash for Payload Verification
+## 3.4 Setup the hash for Payload Verification
 Generate hash that is required for Payload verification.
 
 ```php
@@ -139,7 +139,7 @@ $hash = hash_hmac('sha256', implode("", [
 ```
 
 
-## 3.4 Setup WavePay Payment Request
+## 3.5 Setup WavePay Payment Request
 Use these Payload items and required Parameters in an HTML Form to initiate the Payment with WavePay Payment Gateway. Payment Request can be done by Ajax Request or Web Form.
 
 ### Ajax Request ( Preferred method )
@@ -200,7 +200,7 @@ $response = $client->request('post', "https://testpayment.wavemoney.io:8107/paym
 
 
 
-##  3.5 Call Back
+##  3.6 Call Back
 
 WavePay Payment Gateway will call the Call-back URL which is the "backend_result_url" that is provided in the request form.
 
