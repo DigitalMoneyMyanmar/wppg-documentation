@@ -36,7 +36,7 @@ Merchants can use the testing environment to do their functional integrations. O
 
 | **Environment** | **URL**                                      |
 | --------------- | -------------------------------------------- |
-| Testing         | https://devpayment.wavemoney.io:8107/payment |
+| Testing         | https://testpayment.wavemoney.io:8107/payment |
 | Production      | https://payment.wavemoney.io:8107/payment    |
 
 We will be providing the Client ID and Client Secret to access both environments after successful onboarding.
@@ -75,7 +75,7 @@ First, setup Merchant Credentials and Payload that are required for Request Crea
 ```php
 $data = [
     // Time to Live for Transaction in seconds
-    'timeToLiveSeconds' => "number of seconds e.g. 5000",
+    'time_to_live_in_seconds' => "number of seconds e.g. 5000",
 
     // string - Merchant Name for Payment Screen
     'merchant_name' => "<<Merchant Name e.g. MerchantX>>",
@@ -129,7 +129,7 @@ Generate hash that is required for Payload verification.
 
 ```php
 $hash = hash_hmac('sha256', implode("", [
-    $data['timeToLiveSeconds'],
+    $data['time_to_live_in_seconds'],
     $data['merchant_id'],
     $data['order_id'],
     $data['amount'],
@@ -139,9 +139,37 @@ $hash = hash_hmac('sha256', implode("", [
 ```
 
 
-## 3.4 Setup WavePay Payment request form
-Use  these Payload items and required Parameters in an HTML Form to initiate the Payment with WavePay Payment Gateway.
+## 3.4 Setup WavePay Payment Request
+Use these Payload items and required Parameters in an HTML Form to initiate the Payment with WavePay Payment Gateway. Payment Request can be done by Ajax Request or Web Form.
 
+Ajax Request ( Preferred method )
+```
+$client = new \GuzzleHttp\Client([
+    'http_errors' => false,
+    'verify' => false
+]);
+
+$response = $client->request('post', "https://testpayment.wavemoney.io:8107/payment", [
+    'headers' => [
+	'Accept' => "application/json",
+    ],
+    'form_params' => [
+	"time_to_live_in_seconds" => $data['time_to_live_in_seconds'],
+	"merchant_id" => $data['merchant_id'],
+	"order_id" => $data['order_id'],
+	"merchant_reference_id" => $data['merchant_reference_id'],
+	"frontend_result_url" => $data['frontend_result_url'],
+	"backend_result_url" => $data['backend_result_url'],
+	"amount" => $data['amount'],
+	"payment_description" => $data['payment_description'],
+	"merchant_name" => $data['merchant_name'],
+	"items" => $items,
+	"hash" => $hash
+    ]
+]);
+```
+
+Web Form
 ```php+HTML
 <!DOCTYPE html>
 <html lang="en">
@@ -153,7 +181,7 @@ Use  these Payload items and required Parameters in an HTML Form to initiate the
 </head>
 <body>
     <form action="https://devpayment.wavemoney.io:8107/payment" method="POST">
-        <input type="hidden" name="timeToLiveSeconds" value="<?php echo $data['timeToLiveSeconds']; ?>">
+        <input type="hidden" name="time_to_live_in_seconds" value="<?php echo $data['time_to_live_in_seconds']; ?>">
         <input type="hidden" name="merchant_id" value="<?php echo $data['merchant_id']; ?>">
         <input type="hidden" name="order_id" value="<?php echo $data['order_id']; ?>">
         <input type="hidden" name="merchant_reference_id" value="<?php echo $data['merchant_reference_id']; ?>">
