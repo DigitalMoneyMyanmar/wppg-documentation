@@ -54,11 +54,11 @@ We will be providing the Client ID and Client Secret to access both environments
 | frontend_result_url   | Merchant's Website URL                           | string   | Mandatory     |
 | backend_result_url    | Merchant's Web Service callback URL              | string   | Mandatory     |
 | amount                | Total Amount                                     | string   | Mandatory     |
-| timeToLiveSeconds     | Time to Live for transaction (in seconds )       | string   | Mandatory     |
+| time_to_live_in_seconds     | Time to Live for transaction (in seconds )       | string   | Mandatory     |
 | payment_description   | Payment Description to display on Payment Screen | string   | Mandatory     |
 | merchant_name         | Merchant Name to display on Payment Screen       | string   | Mandatory     |
 | items                 | Items to display on Payment Screen               | JSON string array| Mandatory     |
-| Hash                  | Needed for Hash Validating                       | string   | Mandatory     |
+| hash                  | Needed for Hash Validation                       | string   | Mandatory     |
 
  
 
