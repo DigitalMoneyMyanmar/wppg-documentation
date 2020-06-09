@@ -109,8 +109,8 @@ Next prepare the items to display in WavePay Payment Screen.
 
 ```php
 $items = json_encode([
-		['name' => "Product 1", 'amount' => 1000],
-  	    ['name' => "Product 2", 'amount' => 500]
+	['name' => "Product 1", 'amount' => 1000],
+	['name' => "Product 2", 'amount' => 500]
 ]);
 ```
 
