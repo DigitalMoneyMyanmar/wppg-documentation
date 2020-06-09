@@ -142,8 +142,8 @@ $hash = hash_hmac('sha256', implode("", [
 ## 3.4 Setup WavePay Payment Request
 Use these Payload items and required Parameters in an HTML Form to initiate the Payment with WavePay Payment Gateway. Payment Request can be done by Ajax Request or Web Form.
 
-Ajax Request ( Preferred method )
-```
+### Ajax Request ( Preferred method )
+```php
 $client = new \GuzzleHttp\Client([
     'http_errors' => false,
     'verify' => false
@@ -169,7 +169,7 @@ $response = $client->request('post', "https://testpayment.wavemoney.io:8107/paym
 ]);
 ```
 
-Web Form
+### Web Form
 ```php+HTML
 <!DOCTYPE html>
 <html lang="en">
@@ -180,7 +180,7 @@ Web Form
     <title>Wave Merchant Integration</title>
 </head>
 <body>
-    <form action="https://devpayment.wavemoney.io:8107/payment" method="POST">
+    <form action="https://testpayment.wavemoney.io:8107/payment" method="POST">
         <input type="hidden" name="time_to_live_in_seconds" value="<?php echo $data['time_to_live_in_seconds']; ?>">
         <input type="hidden" name="merchant_id" value="<?php echo $data['merchant_id']; ?>">
         <input type="hidden" name="order_id" value="<?php echo $data['order_id']; ?>">
