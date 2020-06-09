@@ -227,7 +227,7 @@ WavePay Payment Gateway will call the Call-back URL which is the "backend_result
 | transactionId       | mandatory         | MFS billcollect transactionId provided by Wave               |
 | paymentRequestId    | mandatory         | Payment Request id which is primary tracking id for every payment|
 | requestTime         | mandatory         | now() -- serverTime                                          |
-| hashValue           | mandatory         | hash_hmac(merchantId+orderId+amount+backendResultUrl+merchantReferenceId+initiatorMsisdn+transactionId+paymentRequestId+requestTime) -- with hash secret key |
+| hashValue           | mandatory         | hash_hmac(timeToLiveSeconds+merchantId+orderId+amount+backendResultUrl+merchantReferenceId+initiatorMsisdn+transactionId+paymentRequestId+requestTime)  -- with hash secret key |
 
 
 ### Request JSON request Status Codes 
