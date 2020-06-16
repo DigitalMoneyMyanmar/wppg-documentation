@@ -31,13 +31,12 @@ Merchants who wish to have access to the API will be provided with a Client ID, 
 ## 2.2.1  Hashing Algorithm
 
 The API is using HMAC SHA256 algorithm for the hash value between messages. The hash formula for each request & response are provided below. Please note that the null values in the message will be hash as "null" String. For example - when the transactionId is null and the hash formula is (msisdn+transactionId+merchantId) - the String to be hashed would be ```9791009039nulltestmerchantID``` (```String message = "9791009039"+"null"+"testmerchnatID"```).
-There are some example snippets for the hash function.
+There are some example snippets for the hash function for the reference. 
 
 Javascript 
 ```
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha256.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-base64.min.js"></script>
 
 <script>
   var hash = CryptoJS.HmacSHA256("HelloMessage", "secret-key-1234");
@@ -55,7 +54,6 @@ $message = 'HelloMessage';
 echo(hash_hmac('sha256', $message, $key));
 
 ```
-
 
 
 ## 2.3 Environment
