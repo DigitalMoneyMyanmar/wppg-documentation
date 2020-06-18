@@ -26,7 +26,7 @@ Below is the state diagram that explains the flow of WavePay Payment Gateway.
 
 ## 2.2 Security
 
-Merchants who wish to have access to the API will be provided with a Client ID, Client Secret and Hash Secret Key. All Requests should carry the credentials in the API (headers) and should be over HTTPS. Certificates used for HTTPS endpoints for callback URL need to be from recognized Certificate Authorities (CAs), i.e., they are not self-signed and must be implemented with standard port 443.
+Merchants who wish to have access to the API will be provided with a merchantID and Hash Secret Key. Certificates used for HTTPS endpoints for callback URL need to be from recognized Certificate Authorities (CAs), i.e., they are not self-signed and must be implemented with standard port 443.
 
 ## 2.2.1  Hashing Algorithm
 
