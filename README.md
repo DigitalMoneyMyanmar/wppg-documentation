@@ -195,6 +195,18 @@ $response = $client->request('post', "https://testpayment.wavemoney.io:8107/paym
 ]);
 ```
 
+If ajax request successful, merchant will get the response including transaction_id which may need to use in requesting below WavePay Payment Gateway endpoint to authenticate and perform payment.
+
+> Complete redirection inside server-side is prefer.
+
+| Types | Values             |
+| ----------- | ---------------- |
+| HTTP Method | GET             |
+| PATH        | /authenticate |
+| Param | transaction_id|
+
+> Example Path: /authenticate?transaction_id=#@!$
+
 ### Web Form
 ```php+HTML
 <!DOCTYPE html>
@@ -223,6 +235,8 @@ $response = $client->request('post', "https://testpayment.wavemoney.io:8107/paym
 </body>
 </html>
 ```
+
+> In web form, we don't need to call authenticate request.
 
 
 
