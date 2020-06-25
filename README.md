@@ -248,7 +248,9 @@ WavePay Payment Gateway will call the Call-back URL which is the "backend_result
 | ----------- | ---------------- |
 | Type        | application/json |
 
-
+IMPORTANT: Please be informed that merchant side must only take action and assume as a "successful transaction" only when the callBack status is "PAYMENT_CONFIRMED".
+The other callBack statuses such as SCHEDULER_TRANSACTION_TIMED_OUT , TRANSACTION_TIMED_OUT and others are just for reporting purposes.
+The status will hashed along with other values as in the formula. Please also validate the hash values before accepting the transaction as the "successful one".
 
 ### Request JSON format
 
