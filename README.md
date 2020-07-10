@@ -255,11 +255,17 @@ All the rest of the callBacks will be called right after the customer actions.
 The following statuses are immediate callBacks
 
 <b>PAYMENT_CONFIRMED,</b>
+
 TRANSACTION_TIMED_OUT  - which will be called when customer tyirng to continue the expired payment process,
+
 INSUFFICIENT_BALANCE,
+
 ACCOUNT_LOCKED,
+
 BILL_COLLECTION_FAILED,
+
 PAYMENT_REQUEST_CANCELLED,
+
 
 <b>IMPORTANT</b>: Please be informed that merchant side must only take action and assume as a "successful transaction" only when the callBack status is "PAYMENT_CONFIRMED".
 The other callBack statuses such as SCHEDULER_TRANSACTION_TIMED_OUT , TRANSACTION_TIMED_OUT and others are just for reporting purposes.
