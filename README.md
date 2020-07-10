@@ -244,13 +244,34 @@ If ajax request successful, merchant will get the response including transaction
 
 WavePay Payment Gateway will call the Call-back URL which is the "backend_result_url" that is provided in the request form.
 
+There are two types of callBack 
+1. Delay CallBack
+2. Immediate CallBack
+
+If the customer stops the action during the payment process (leaves the screen or close the screen) until time-out, the system assume that transaction as 'time-out' and will make the call back with that status "“SCHEDULER_TRANSACTION_TIMED_OUT”". It can be between 1 seconds to 900 seconds after the time-out time.
+
+All the rest of the callBacks will be called right after the customer actions. 
+
+The following statuses are immediate callBacks
+
+<b>PAYMENT_CONFIRMED,</b>
+TRANSACTION_TIMED_OUT  - which will be called when customer tyirng to continue the expired payment process,
+INSUFFICIENT_BALANCE,
+ACCOUNT_LOCKED,
+BILL_COLLECTION_FAILED,
+PAYMENT_REQUEST_CANCELLED,
+
+<b>IMPORTANT</b>: Please be informed that merchant side must only take action and assume as a "successful transaction" only when the callBack status is "PAYMENT_CONFIRMED".
+The other callBack statuses such as SCHEDULER_TRANSACTION_TIMED_OUT , TRANSACTION_TIMED_OUT and others are just for reporting purposes.
+The status will hashed along with other values as in the formula. Please also validate the hash values before accepting the transaction as the "successful one".
+
+All the transaction status
+
 | HTTP Method | POST             |
 | ----------- | ---------------- |
 | Type        | application/json |
 
-IMPORTANT: Please be informed that merchant side must only take action and assume as a "successful transaction" only when the callBack status is "PAYMENT_CONFIRMED".
-The other callBack statuses such as SCHEDULER_TRANSACTION_TIMED_OUT , TRANSACTION_TIMED_OUT and others are just for reporting purposes.
-The status will hashed along with other values as in the formula. Please also validate the hash values before accepting the transaction as the "successful one".
+
 
 ### Request JSON format
 
