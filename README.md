@@ -254,17 +254,17 @@ All the rest of the callBacks will be called right after the customer actions.
 
 The following statuses are immediate callBacks
 
-<b>PAYMENT_CONFIRMED,</b>
+- <b>PAYMENT_CONFIRMED</b> - Only Status to take as the successful transaction. which will be called when customer complete the payment process successfully,
 
-TRANSACTION_TIMED_OUT  - which will be called when customer tyirng to continue the expired payment process,
+- TRANSACTION_TIMED_OUT  - which will be called when customer tyirng to continue the expired payment process,
 
-INSUFFICIENT_BALANCE,
+- INSUFFICIENT_BALANCE,
 
-ACCOUNT_LOCKED,
+- ACCOUNT_LOCKED,
 
-BILL_COLLECTION_FAILED,
+- BILL_COLLECTION_FAILED - which will be called when there is some failure in bill payment process at Wave,
 
-PAYMENT_REQUEST_CANCELLED,
+- PAYMENT_REQUEST_CANCELLED - which will be called when customer cancel the payment before the payment,
 
 
 <b>IMPORTANT</b>: Please be informed that merchant side must only take action and assume as a "successful transaction" only when the callBack status is "PAYMENT_CONFIRMED".
