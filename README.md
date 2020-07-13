@@ -245,12 +245,10 @@ If ajax request successful, merchant will get the response including transaction
 WavePay Payment Gateway will call the Call-back URL which is the "backend_result_url" that is provided in the request form.
 
 There are two types of callBack 
-1. Delay CallBack
-2. Immediate CallBack
 
-1. Delay CallBack - If the customer stops the action during the payment process (leaves the screen or close the screen) until time-out, the system assume that transaction as 'time-out' and will make the call back with that status **"SCHEDULER_TRANSACTION_TIMED_OUT"**. It can be between 1 second to 900 seconds after the time-out time.
+1. **Scheduled CallBack** - If the customer stops the action during the payment process (leaves the screen or close the screen) until time-out, the system assume that transaction as 'time-out' and will make the call back with that status **"SCHEDULER_TRANSACTION_TIMED_OUT"**. It can be between 1 second to 900 seconds after the time-out time.
 
-2. Immediate CallBack - All the rest of the callBacks will be called right after the customer actions. 
+2. **Immediate CallBack** - All the rest of the callBacks will be called right after the customer actions. 
 
 The following statuses are immediate callBacks
 
