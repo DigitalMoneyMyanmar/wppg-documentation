@@ -63,7 +63,7 @@ Merchants can use the testing environment to do their functional integrations. O
 | **Environment** | **URL**                                      |
 | --------------- | -------------------------------------------- |
 | Testing         | https://testpayments.wavemoney.io:8107/payment |
-| Production      | https://payments.wavemoney.io:8107/payment    |
+| Production      | https://payments.wavemoney.io/payment    |
 
 We will be providing the Client ID and Client Secret to access both environments after successful onboarding.
 
@@ -175,7 +175,7 @@ $client = new \GuzzleHttp\Client([
     'verify' => false
 ]);
 
-$response = $client->request('post', "https://testpayment.wavemoney.io:8107/payment", [
+$response = $client->request('post', "https://testpayments.wavemoney.io:8107/payment", [
     'headers' => [
 	'Accept' => "application/json",
     ],
@@ -218,7 +218,7 @@ If ajax request successful, merchant will get the response including transaction
     <title>Wave Merchant Integration</title>
 </head>
 <body>
-    <form action="https://testpayment.wavemoney.io:8107/payment" method="POST">
+    <form action="https://testpayments.wavemoney.io:8107/payment" method="POST">
         <input type="hidden" name="time_to_live_in_seconds" value="<?php echo $data['time_to_live_in_seconds']; ?>">
         <input type="hidden" name="merchant_id" value="<?php echo $data['merchant_id']; ?>">
         <input type="hidden" name="order_id" value="<?php echo $data['order_id']; ?>">
