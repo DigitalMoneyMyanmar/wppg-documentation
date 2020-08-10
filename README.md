@@ -195,6 +195,126 @@ $response = $client->request('post', "https://testpayments.wavemoney.io:8107/pay
 ]);
 ```
 
+### Response Code and Message
+**Endpoint**: /payment
+
+**HTTP Status Code**: **200**
+
+**Description**: Response when Payment request is successfully created.
+
+**Response Body**
+```json
+{
+    "message": "success",
+    "transaction_id": "<response with encrypted_transaction_id>"
+}
+```
+
+
+**Endpoint**: /payment
+
+**HTTP Status Code**: **409**
+
+**Description**: Response when Payment request is already created.
+
+**Response Body**
+```json
+{
+    "message": "Record already exists"
+}
+```
+
+
+**Endpoint**: /payment
+
+**HTTP Status Code**: **400**
+
+**Description**: Response when Hash in payload is invalid.
+
+**Response Body**
+```json
+{
+    "message": "INVALID_HASH"
+}
+```
+
+
+**Endpoint**: /payment
+
+**HTTP Status Code**: **422**
+
+**Description**: Response when fields in Payload are null or invalid.
+
+**Response Body**
+```json
+{
+    "errors": {
+        "time_to_live_in_seconds": [
+            "The time to live in seconds field is required."
+        ],
+        "merchant_id": [
+            "The merchant id field is required."
+        ],
+        "order_id": [
+            "The order id field is required."
+        ],
+        "merchant_reference_id": [
+            "The merchant reference id field is required."
+        ],
+        "frontend_result_url": [
+            "The frontend result url field is required."
+        ],
+        "backend_result_url": [
+            "The backend result url field is required."
+        ],
+        "amount": [
+            "The amount field is required."
+        ],
+        "payment_description": [
+            "The payment description field is required."
+        ],
+        "merchant_name": [
+            "The merchant name field is required."
+        ],
+        "items": [
+            "The items field is required."
+        ],
+        "hash": [
+            "The hash field is required."
+        ]
+    }
+}
+```
+
+
+**Endpoint**: /payment
+
+**HTTP Status Code**: **404**
+
+**Description**: Response when Merchant Account is invalid.
+
+**Response Body**
+```json
+{
+    "message": "No record found"
+}
+```
+
+
+**Endpoint**: /payment
+
+**HTTP Status Code**: **404**
+
+**Description**: Response when Merchant Account is invalid.
+
+**Response Body**
+```json
+{
+    "message": "No record found"
+}
+```
+
+
 If ajax request successful, merchant will get the response including transaction_id which may need to use in requesting below WavePay Payment Gateway endpoint to authenticate and perform payment.
 
 > Complete redirection inside server-side is prefer.
