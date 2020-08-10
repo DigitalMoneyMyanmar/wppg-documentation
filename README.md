@@ -300,21 +300,6 @@ $response = $client->request('post', "https://testpayments.wavemoney.io:8107/pay
 }
 ```
 
-
-**Endpoint**: /payment
-
-**HTTP Status Code**: **404**
-
-**Description**: Response when Merchant Account is invalid.
-
-**Response Body**
-```json
-{
-    "message": "No record found"
-}
-```
-
-
 If ajax request successful, merchant will get the response including transaction_id which may need to use in requesting below WavePay Payment Gateway endpoint to authenticate and perform payment.
 
 > Complete redirection inside server-side is prefer.
