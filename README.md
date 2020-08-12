@@ -432,14 +432,15 @@ All the transaction status
 
 ### Request JSON request Status Codes 
 
-| Status                    | Description                                                  | Transaction Status           |
-| ------------------------- | ------------------------------------------------------------ | ---------------------------- |
-| PAYMENT_CONFIRMED         | Payment completed successully                                | Success                      |
-| TRANSACTION_TIMED_OUT     | Transaction has timed out when committing the payment        | Failed/Cancelled Transaction |
-| INSUFFICIENT_BALANCE      | Customer's Balance is insufficient for the payment           | Pending Transaction          |
-| ACCOUNT_LOCKED            | Customer's Account is locked.                                | Failed/Cancelled Transaction |
-| BILL_COLLECTION_FAILED    | Wave Services failed to collect the payment from Customer 's Wallet. | Failed/Cancelled Transaction |
-| PAYMENT_REQUEST_CANCELLED | Customer's Payment Request is cancelled by Wave Service.     | Failed/Cancelled Transaction |
+| Status                          | Description                                                  | Transaction Status           |
+| ------------------------------- | ------------------------------------------------------------ | ---------------------------- |
+| PAYMENT_CONFIRMED               | Payment completed successully                                | Success                      |
+| TRANSACTION_TIMED_OUT           | Transaction has timed out when committing the payment        | Failed/Cancelled Transaction |
+| INSUFFICIENT_BALANCE            | Customer's Balance is insufficient for the payment           | Pending Transaction          |
+| ACCOUNT_LOCKED                  | Customer's Account is locked.                                | Failed/Cancelled Transaction |
+| BILL_COLLECTION_FAILED          | Wave Services failed to collect the payment from Customer 's Wallet. | Failed/Cancelled Transaction |
+| PAYMENT_REQUEST_CANCELLED       | Customer's Payment Request is cancelled by Wave Service.     | Failed/Cancelled Transaction |
+| SCHEDULER_TRANSACTION_TIMED_OUT | Transaction Timeout after expired "time to live"             | Failed/Cancelled Transaction |
 
 
 
