@@ -310,7 +310,7 @@ If ajax request successful, merchant will get the response including transaction
 | PATH        | /authenticate |
 | Param | transaction_id|
 
-> Example Path: /authenticate?transaction_id=#@!$
+> Example Path: https://testpayments.wavemoney.io/authenticate?transaction_id=<transaction_id from response>
 
 ### Web Form
 ```php+HTML
@@ -432,25 +432,15 @@ All the transaction status
 
 ### Request JSON request Status Codes 
 
-|Status 			| Description   	|
-|---				|---			|
-|OTP_REQUESTED  		| OTP has been requested     								|
-|OTP_CONFIRMED			| OTP has been verified  								|
-|PAYMENT_INITIATED   		| Payment has been initiated   								|
-|PAYMENT_CONFIRMED		| Payment completed successully  							|
-|PAYMENT_REQUEST_CANCELLED   	| Payment has been cancelled by User/system   						|
-|INVALID_HASH   		| hashValue is invalid   								|
-|OTP_GENERATION_FAILED   	| OTP Generation has failed    								|
-|OTP_CONFIRMATION_FAILED   	| OTP confirmation failed - Invalid or mismatch  					|
-|INSUFFICIENT_BALANCE   	| Wave Account balance is insufficient or is below Invoice amount  			|
-|INVALID_PIN    		| Wave Account PIN is not valid  							|
-|ACCOUNT_LOCKED    		| Wave Account is locked  								|
-|BILL_COLLECTION_FAILED		| Errors apart from INSUFFICIENT_BALANCE, INVALID_PIN, ACCOUNT_LOCKED 			|
-|PAYMENT_CALLBACK_FAILED	| Payment callback to  backendResultUrl failed 						|
-|PAYMENT_CALLBACK_SUCCESS	| Payment callback to  backendResultUrl successfull  					|
-|TRANSACTION_TIMED_OUT		| Transaction has timed out when committing the payment					|
-|PAYMENT_RETRIEVAL_FAILED	| Issue in retrieving payment details    						|
-|MERCHANT_RETRIEVAL_FAILED	| Issue in retrieving merchant details  - Merchant not registered or activated		|
+| Status                    | Description                                                  | Transaction Status           |
+| ------------------------- | ------------------------------------------------------------ | ---------------------------- |
+| PAYMENT_CONFIRMED         | Payment completed successully                                | Success                      |
+| TRANSACTION_TIMED_OUT     | Transaction has timed out when committing the payment        | Failed/Cancelled Transaction |
+| INSUFFICIENT_BALANCE      | Customer's Balance is insufficient for the payment           | Pending Transaction          |
+| ACCOUNT_LOCKED            | Customer's Account is locked.                                | Failed/Cancelled Transaction |
+| BILL_COLLECTION_FAILED    | Wave Services failed to collect the payment from Customer 's Wallet. | Failed/Cancelled Transaction |
+| PAYMENT_REQUEST_CANCELLED | Customer's Payment Request is cancelled by Wave Service.     | Failed/Cancelled Transaction |
+
 
 
 
