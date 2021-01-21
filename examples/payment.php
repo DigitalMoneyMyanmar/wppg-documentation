@@ -1,7 +1,7 @@
 <?php
     $data = [
         // Time to Live for Transaction in seconds
-        'timeToLiveSeconds' => 5000,
+        'time_to_live_in_seconds' => 5000,
 
         // string - Merchant Name for Payment Screen
         'merchant_name' => "Wave Merchant",
