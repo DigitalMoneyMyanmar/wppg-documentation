@@ -37,7 +37,7 @@
     ]);
                                 
     $hash = hash_hmac('sha256', implode("", [
-        $data['timeToLiveSeconds'],
+        $data['time_to_live_in_seconds'],
         $data['merchant_id'],
         $data['order_id'],
         $data['amount'],
@@ -56,7 +56,7 @@
 </head>
 <body>
     <form action="https://pww.test/payment" method="POST">
-        <input type="hidden" name="timeToLiveSeconds" value="<?php echo $data['timeToLiveSeconds']; ?>">
+        <input type="hidden" name="time_to_live_in_seconds" value="<?php echo $data['time_to_live_in_seconds']; ?>">
         <input type="hidden" name="merchant_id" value="<?php echo $data['merchant_id']; ?>">
         <input type="hidden" name="order_id" value="<?php echo $data['order_id']; ?>">
         <input type="hidden" name="merchant_reference_id" value="<?php echo $data['merchant_reference_id']; ?>">
