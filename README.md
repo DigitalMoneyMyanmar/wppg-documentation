@@ -79,7 +79,7 @@ We will be providing the Client ID and Client Secret to access both environments
 | merchant_reference_id | Unique ID for every transaction by Merchant      | string   | Mandatory     |
 | frontend_result_url   | Merchant's Website URL                           | string   | Mandatory     |
 | backend_result_url    | Merchant's Web Service callback URL              | string   | Mandatory     |
-| amount                | Total Amount                                     | string   | Mandatory     |
+| amount                | Total Amount                                     | positive integers   | Mandatory     |
 | time_to_live_in_seconds     | Time to Live for transaction (in seconds )       | string   | Mandatory     |
 | payment_description   | Payment Description to display on Payment Screen | string   | Mandatory     |
 | merchant_name         | Merchant Name to display on Payment Screen       | string   | Mandatory     |
