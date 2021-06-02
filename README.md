@@ -300,17 +300,20 @@ $response = $client->request('post', "https://testpayments.wavemoney.io:8107/pay
 }
 ```
 
-If ajax request successful, merchant will get the response including transaction_id which may need to use in requesting below WavePay Payment Gateway endpoint to authenticate and perform payment.
+If ajax request successful, merchant will get the response including transaction_id which may need to use in requesting below WavePay Payment Gateway endpoint to authenticate and perform payment. Merchant can also provide phone number which will be filled automatically in OTP request screen page. 
 
 > Complete redirection inside server-side is prefer.
 
 | Types | Values             |
-| ----------- | ---------------- |
+| ----------- | ---------------- | 
 | HTTP Method | GET             |
 | PATH        | /authenticate |
 | Param | transaction_id|
+| Param | msisdn|
 
-> Example Path: https://testpayments.wavemoney.io/authenticate?transaction_id=<transaction_id from response>
+> Param `msisdn` is optional.
+
+> Example Path: https://testpayments.wavemoney.io/authenticate?transaction_id=<transaction_id_from_response>&msisdn=<phone_number_use_in_transition>
 
 ### Web Form
 ```php+HTML
@@ -333,6 +336,7 @@ If ajax request successful, merchant will get the response including transaction
         <input type="hidden" name="amount" value="<?php echo $data['amount']; ?>">
         <input type="hidden" name="payment_description" value="<?php echo $data['payment_description']; ?>">
         <input type="hidden" name="merchant_name" value="<?php echo $data['merchant_name']; ?>">
+        <input type="hidden" name="msisdn" value="<?php echo $data['msisdn']; ?>">
         <input type="hidden" name="items" value='<?php echo $items; ?>'>
         <input type="hidden" name="hash" value="<?php echo $hash; ?>">
         <button class="btn btn-primary">Pay with Wave</button>
@@ -341,7 +345,7 @@ If ajax request successful, merchant will get the response including transaction
 </html>
 ```
 
-> In web form, we don't need to call authenticate request.
+> In web form, we don't need to call authenticate request.  Merchant can also provide phone number which will be filled automatically in OTP screen request. 
 
 
 
