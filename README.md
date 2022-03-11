@@ -62,8 +62,10 @@ Merchants can use the testing environment to do their functional integrations. O
 
 | **Environment** | **URL**                                      |
 | --------------- | -------------------------------------------- |
-| Testing         | https://testpayments.wavemoney.io:8107/payment |
-| Production      | https://payments.wavemoney.io/payment    |
+| Testing         | https://testpayments.wavemoney.io:8107 |
+| SIT	          | https://uatpayments.wavemoney.io:8107 |
+| PREPROD         | https://preprodpayments.wavemoney.io:8107 |
+| Production      | https://payments.wavemoney.io    |
 
 We will be providing the Client ID and Client Secret to access both environments after successful onboarding.
 
